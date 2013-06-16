@@ -11,9 +11,11 @@ class OysterJourneyTest(unittest.TestCase):
     endTime = '18:07'
     journey = 'Syon Lane [National Rail] to Deptford [National Rail]'
     cost = '3.60'
+    from_station = "Syon Lane"
+    to_station = "Deptford"
 
     def setUp(self):
-        self.underTest = OysterJourney(self.date, self.startTime, self.endTime, self.journey, self.cost)
+        self.underTest = OysterJourney(self.date, self.startTime, self.endTime, self.journey, self.cost, self.from_station, self.to_station)
 
     def test_oyster_journey_journey(self):
         self.assertEquals(self.journey, self.underTest.description)
@@ -29,7 +31,14 @@ class OysterJourneyTest(unittest.TestCase):
         self.assertEquals(self.cost, self.underTest.cost)
 
     def test_oyster_journey_end_time(self):
-        self.assertEquals(self.underTest.endTime, time.strptime("18:07", "%H:%M"))
+        self.assertEquals(time.strptime("18:07", "%H:%M"), self.underTest.end_time, )
 
     def test_oyster_journey_start_time(self):
-        self.assertEquals(self.underTest.startTime, time.strptime("17:03", "%H:%M"))
+        self.assertEquals(time.strptime("17:03", "%H:%M"), self.underTest.start_time)
+
+    def test_oyster_from_station(self):
+        self.assertEquals(self.from_station, self.underTest.from_station)
+
+    def test_oyster_to_station(self):
+        self.assertEquals(self.to_station, self.underTest.to_station)
+
