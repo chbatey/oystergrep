@@ -26,7 +26,7 @@ class JourneyCategoriserTest(TestCase):
         self.under_test.categorise(journeys)
         work_journeys = self.under_test.get_work_journeys()
         #then
-        self.assertEquals(0, len(work_journeys))
+        self.assertEqual(0, len(work_journeys))
 
     def test_one_work_journey_from_work(self):
         #given
@@ -36,7 +36,7 @@ class JourneyCategoriserTest(TestCase):
         self.under_test.categorise(journeys)
         work_journeys = self.under_test.get_work_journeys()
         #then
-        self.assertEquals(1, len(work_journeys))
+        self.assertEqual(1, len(work_journeys))
 
     def test_one_work_journey_to_work(self):
         #given
@@ -46,7 +46,7 @@ class JourneyCategoriserTest(TestCase):
         self.under_test.categorise(journeys)
         work_journeys = self.under_test.get_work_journeys()
         #then
-        self.assertEquals(1, len(work_journeys))
+        self.assertEqual(1, len(work_journeys))
 
     def __journey_from_to(self, from_station, to_station):
         journey = self.__journey()
