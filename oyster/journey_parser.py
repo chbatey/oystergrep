@@ -15,7 +15,7 @@ class JourneyParser(object):
             file_reader = csv.reader(csv_file)
             for row in file_reader:
                 if len(row) == COLS_PER_ROW and row[0] != FIRST_COLUMN:
-                    if not (row[3].startswith(AUTO_TOP_UP)):
+                    if not (row[3].startswith(AUTO_TOP_UP)) and not row[3].startswith("[No touch-in]") and not row[3].startswith("Bus journey"):
                         to_and_from = row[3].split(DESCRIPTION_SPLITTER)
                         logging.debug(to_and_from)
                         journey = OysterJourney(row[0], row[1], row[2], row[3], row[4], to_and_from[0], to_and_from[1])

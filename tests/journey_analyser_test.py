@@ -123,7 +123,7 @@ class JourneyAnalyserTest(TestCase):
 
         self.assertEqual(0, len(week_break_down[4].get_journeys()))
 
-    def test_weekly_break_down_week_allocating_journeys(self):
+    def test_weekly_break_down_total_cost(self):
         #given
         week1_1 = self.__journey_with_date("01-May-2013")
         week1_2 = self.__journey_with_date("05-May-2013")
@@ -144,7 +144,7 @@ class JourneyAnalyserTest(TestCase):
         self.assertEqual(2, len(week_journeys))
         self.assertEqual(week1_1, week_journeys[0])
         self.assertEqual(week1_2, week_journeys[1])
-
+        self.assertAlmostEqual(2.0, week_break_down.get_total_cost())
 
     def __journey_with_cost(self, cost):
         return OysterJourney(self.default_date, self.default_start_time,

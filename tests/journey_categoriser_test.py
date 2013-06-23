@@ -16,8 +16,7 @@ class JourneyCategoriserTest(TestCase):
     default_to = "somewhere else"
 
     def setUp(self):
-        self.under_test = JourneyCategoriser()
-        self.under_test.work_location = WORK_LOCATION
+        self.under_test = JourneyCategoriser(WORK_LOCATION)
 
     def test_no_work_journeys(self):
         #given

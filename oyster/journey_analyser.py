@@ -94,8 +94,16 @@ class WeekBreakdown:
     def get_journeys(self):
         return self._journeys
 
+    def get_summary(self):
+        to_return = "Week: " + str(self._start_date) + " to " + str(self._end_date) + " " + str(self.get_total_cost()) + "\n"
+        for journey in self._journeys:
+            to_return += str(journey.date) + " " + str(journey.cost) + " " + journey.description + "\n"
+
+        return to_return
+
     def get_total_cost(self):
         total = 0.0
         for journey in self._journeys:
-            #total += journey.cost
-            return total
+            total += journey.cost
+
+        return total

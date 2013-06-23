@@ -28,7 +28,7 @@ class JourneyParserTest(unittest.TestCase):
                               "17:03",
                               "18:07",
                               "Syon Lane [National Rail] to Deptford [National Rail]",
-                              "3.60",
+                              3.6,
                               "Syon Lane [National Rail]",
                               "Deptford [National Rail]")
 
@@ -42,7 +42,7 @@ class JourneyParserTest(unittest.TestCase):
                               "17:03",
                               "18:07",
                               "Syon Lane [National Rail] to Deptford [National Rail]",
-                              "3.60",
+                              3.6,
                               "Syon Lane [National Rail]",
                               "Deptford [National Rail]")
 
@@ -51,28 +51,35 @@ class JourneyParserTest(unittest.TestCase):
         journeys = self.underTest.parse(fileLocation).journeys
         self.assertEquals(7, len(journeys))
 
-#       30-May-2013,07:21,08:26,"Deptford [National Rail] to Syon Lane [National Rail]",3.60,,7.05,""
-
         self.__assert_journey(journeys[1],
                           '30-May-2013',
                           "07:21",
                           "08:26",
                           "Deptford [National Rail] to Syon Lane [National Rail]",
-                          "3.60",
+                          3.6,
                           "Deptford [National Rail]",
                           "Syon Lane [National Rail]")
-#       29-May-2013,17:02,18:02,"Syon Lane [National Rail] to Old Street",5.10,,12.55,""
         self.__assert_journey(journeys[2],
                       '29-May-2013',
                       "17:02",
                       "18:02",
                       "Syon Lane [National Rail] to Old Street",
-                      "5.10",
+                      5.1,
                       "Syon Lane [National Rail]",
                       "Old Street")
 
     def test_parse_ignored_topups(self):
         fileLocation = './tests/testfiles/autotopup.csv'
+        journeys = self.underTest.parse(fileLocation).journeys
+        self.assertEquals(1, len(journeys))
+
+    def test_parse_incomplete_journey_ignore(self):
+        fileLocation = './tests/testfiles/incomplete.csv'
+        journeys = self.underTest.parse(fileLocation).journeys
+        self.assertEquals(1, len(journeys))
+
+    def test_parse_bus_journey_ignore(self):
+        fileLocation = './tests/testfiles/busjourney.csv'
         journeys = self.underTest.parse(fileLocation).journeys
         self.assertEquals(1, len(journeys))
 
@@ -86,7 +93,7 @@ class JourneyParserTest(unittest.TestCase):
               "20:11",
               "20:45",
               "Barbican to Cutty Sark DLR",
-              "1.90",
+              1.9,
               "Barbican",
               "Cutty Sark DLR")
 
